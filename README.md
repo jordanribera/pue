@@ -12,64 +12,54 @@ Connect to your bridge:
 Enumerate groups:
 ```
 >>> api.groups
-{
-    1: <Group: Office (Room)>,
-    2: <Group: Bedroom (Room)>,
-    3: <Group: Living room (Room)>,
-    5: <Group: Custom group for $lights (LightGroup)>,
-    6: <Group: Custom group for $group (LightGroup)>
-}
+{1: <Group: Office (Room)>,
+ 2: <Group: Bedroom (Room)>,
+ 3: <Group: Living room (Room)>,
+ 5: <Group: Custom group for $lights (LightGroup)>,
+ 6: <Group: Custom group for $group (LightGroup)>}
 ```
 
 
 Enumerate lights:
 ```
 >>> api.lights
-{
-    4: <Light: Bedroom Ceiling 1>,
-    5: <Light: Bedroom Ceiling 2>,
-    7: <Light: Office Ceiling 1>,
-    8: <Light: Office Ceiling 2>,
-    9: <Light: Office Bathroom Ceiling>,
-    10: <Light: Living Room Lamp 1>,
-    11: <Light: Entryway 1>,
-    12: <Light: Entryway 2>,
-    13: <Light: Office Lamp>,
-    14: <Light: Office Desk 3G>
-}
+{4: <Light: Bedroom Ceiling 1>,
+ 5: <Light: Bedroom Ceiling 2>,
+ 7: <Light: Office Ceiling 1>,
+ 8: <Light: Office Ceiling 2>,
+ 9: <Light: Office Bathroom Ceiling>,
+ 10: <Light: Living Room Lamp 1>,
+ 11: <Light: Entryway 1>,
+ 12: <Light: Entryway 2>,
+ 13: <Light: Office Lamp>,
+ 14: <Light: Office Desk 3G>}
 
 >>> api.groups[1].lights
-{
-    7: <Light: Office Ceiling 1>,
-    8: <Light: Office Ceiling 2>,
-    9: <Light: Office Bathroom Ceiling>,
-    13: <Light: Office Lamp>,
-    14: <Light: Office Desk 3G>
-}
+{7: <Light: Office Ceiling 1>,
+ 8: <Light: Office Ceiling 2>,
+ 9: <Light: Office Bathroom Ceiling>,
+ 13: <Light: Office Lamp>,
+ 14: <Light: Office Desk 3G>}
 ```
 
 
 Enumerate scenes:
 ```
 >>> api.scenes
-{
-    'exR7mVyhiT0C-PV': <Scene: Relax (GroupScene)>,
-    '9BF-y5PLcxy2A10': <Scene: Read (GroupScene)>,
-    'bahEMNlGmrrdqWe': <Scene: Concentrate (GroupScene)>,
-    'F21yqkk1WZUvfU7': <Scene: Energize (GroupScene)>,
-    'WRqxER5xTDx1Ch8': <Scene: Off (GroupScene)>,
-    '8kVNOl80ULagV4L': <Scene: Nightlight (GroupScene)>,
-    'N2hfZQDzIOPDDqm': <Scene: Last on state (GroupScene)>,
-    'DAbleGYGc4pXAAo': <Scene: Rainbow (GroupScene)>,
-}
+{'exR7mVyhiT0C-PV': <Scene: Relax (GroupScene)>,
+ '9BF-y5PLcxy2A10': <Scene: Read (GroupScene)>,
+ 'bahEMNlGmrrdqWe': <Scene: Concentrate (GroupScene)>,
+ 'F21yqkk1WZUvfU7': <Scene: Energize (GroupScene)>,
+ 'WRqxER5xTDx1Ch8': <Scene: Off (GroupScene)>,
+ '8kVNOl80ULagV4L': <Scene: Nightlight (GroupScene)>,
+ 'N2hfZQDzIOPDDqm': <Scene: Last on state (GroupScene)>,
+ 'DAbleGYGc4pXAAo': <Scene: Rainbow (GroupScene)>}
 
 >>> api.groups[1].scenes
-{
-    'exR7mVyhiT0C-PV': <Scene: Relax (GroupScene)>,
-    '9BF-y5PLcxy2A10': <Scene: Read (GroupScene)>,
-    '8kVNOl80ULagV4L': <Scene: Nightlight (GroupScene)>,
-    'DAbleGYGc4pXAAo': <Scene: Rainbow (GroupScene)>,
-}
+{'exR7mVyhiT0C-PV': <Scene: Relax (GroupScene)>,
+ '9BF-y5PLcxy2A10': <Scene: Read (GroupScene)>,
+ '8kVNOl80ULagV4L': <Scene: Nightlight (GroupScene)>,
+ 'DAbleGYGc4pXAAo': <Scene: Rainbow (GroupScene)>}
 ```
 
 
