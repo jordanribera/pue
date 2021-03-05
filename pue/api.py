@@ -1,6 +1,7 @@
 import json
 import requests
 
+from .constants import ALLOWED_ROOM_CLASSES
 from .exceptions import NotAuthenticated
 from .groups import Group
 from .lights import Light
@@ -21,6 +22,12 @@ class HueAPI:
 
     def put(self, url, data={}):
         return requests.put(url, json.dumps(data)).json()
+
+    def post(self, url, data={}):
+        return requests.post(url, json.dumps(data)).json()
+
+    def delete(self, url):
+        return requests.delete(url).json()
 
     # API URLs
     @property
@@ -74,6 +81,23 @@ class HueAPI:
         }
 
         return self._groups
+
+    def create_group(
+        self,
+        name,
+        lights=[],
+        group_type='LightGroup',
+        room_class=None,
+    ):
+        payload = {
+            'name': name,
+            'type': group_type,
+            'lights': [str(light) for light in lights],
+        }
+        if group_type == 'Room' and room_class in ALLOWED_ROOM_CLASSES:
+            payload['class'] = room_class
+
+        self.post(self.groups_url, payload)
 
     # Scenes
     @property

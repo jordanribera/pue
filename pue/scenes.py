@@ -49,3 +49,6 @@ class Scene:
 
     def apply(self):
         self.api.put(self.group.action_url, {'scene': self.id})
+
+    def delete(self):
+        self.api.delete(self.url)
