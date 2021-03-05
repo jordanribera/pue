@@ -12,6 +12,10 @@ class Light:
     def url(self):
         return f'{self.api.lights_url}/{self.id}'
 
+    @property
+    def state_url(self):
+        return f'{self.url}/state'
+
     def fetch_data(self):
         return self.api.get(self.url)
 
@@ -27,3 +31,6 @@ class Light:
 
         self.state = data.get('state', {})
         self.capabilities = data.get('capabilities', {})
+
+    def set_state(self, **state):
+        self.api.put(self.state_url, state)

@@ -1,3 +1,4 @@
+from .constants import ALLOWED_ROOM_CLASSES
 from .lights import Light
 
 
@@ -37,3 +38,20 @@ class Group:
             id: Light(self.api, id)
             for id in self.light_ids
         }
+
+    @property
+    def scenes(self):
+        return {
+            key: value
+            for key, value in self.api.scenes.items()
+            if value.group_id == self.id
+        }
+
+    def set_state(self, **state):
+        if 'scene' in state:
+            state['scene'] = state['scene'].id
+
+        self.api.put(self.action_url, state)
+
+    def delete(self):
+        self.api.delete(self.url)
