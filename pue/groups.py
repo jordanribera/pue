@@ -37,3 +37,9 @@ class Group:
             id: Light(self.api, id)
             for id in self.light_ids
         }
+
+    def set_state(self, **state):
+        if 'scene' in state:
+            state['scene'] = state['scene'].id
+
+        self.api.put(self.action_url, state)
