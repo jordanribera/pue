@@ -1,11 +1,13 @@
 import json
 import requests
 
-from .constants import ALLOWED_ROOM_CLASSES
-from .exceptions import NotAuthenticated
+from .constants import ROOM_CLASSES
 from .groups import Group
+from .groups import GroupSet
 from .lights import Light
+from .lights import LightSet
 from .scenes import Scene
+from .scenes import SceneSet
 
 
 class HueAPI:
@@ -49,7 +51,7 @@ class HueAPI:
     # Lights
     @property
     def lights(self):
-        return self.get_lights(refresh=False)
+        return LightSet(self.get_lights(refresh=False))
 
     def get_lights(self, refresh=True):
         if self._lights and not refresh:
@@ -67,7 +69,7 @@ class HueAPI:
     # Groups
     @property
     def groups(self):
-        return self.get_groups(refresh=False)
+        return GroupSet(self.get_groups(refresh=False))
 
     def get_groups(self, refresh=True):
         if self._groups and not refresh:
@@ -94,7 +96,7 @@ class HueAPI:
             'type': group_type,
             'lights': [str(light) for light in lights],
         }
-        if group_type == 'Room' and room_class in ALLOWED_ROOM_CLASSES:
+        if group_type == 'Room' and room_class in ROOM_CLASSES:
             payload['class'] = room_class
 
         self.post(self.groups_url, payload)
@@ -102,7 +104,7 @@ class HueAPI:
     # Scenes
     @property
     def scenes(self):
-        return self.get_scenes(refresh=False)
+        return SceneSet(self.get_scenes(refresh=False))
 
     def get_scenes(self, refresh=True):
         if self._scenes and not refresh:

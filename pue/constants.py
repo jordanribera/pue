@@ -3,7 +3,7 @@ GROUP_TYPES = (
     'Room',
 )
 
-ALLOWED_ROOM_CLASSES = (
+ROOM_CLASSES = (
     'Living room',
     'Kitchen',
     'Dining',
