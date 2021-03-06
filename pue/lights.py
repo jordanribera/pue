@@ -1,3 +1,6 @@
+from .filters import LIGHT_FILTERS
+
+
 class Light:
     def __init__(self, api, id, data=None):
         self.api = api
@@ -34,3 +37,23 @@ class Light:
 
     def set_state(self, **state):
         self.api.put(self.state_url, state)
+
+
+class LightSet(dict):
+    def __init__(self, *args, **kwargs):
+        self.update(*args, **kwargs)
+
+    # def __repr__(self):
+    #     data = dict(self)
+    #     return '<LightSet\n%r\n>' % (data)
+
+    def filter(self, **filters):
+        output = dict(self)
+        for f, v in filters.items():
+            if f in LIGHT_FILTERS:
+                output = dict(filter(
+                    LIGHT_FILTERS[f](v),
+                    output.items(),
+                ))
+
+        return LightSet(output)

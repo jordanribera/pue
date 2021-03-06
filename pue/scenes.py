@@ -1,6 +1,8 @@
 from .groups import Group
 from .lights import Light
 
+from .filters import SCENE_FILTERS
+
 
 class Scene:
     def __init__(self, api, id, data=None):
@@ -42,13 +44,34 @@ class Scene:
 
     @property
     def lights(self):
-        return {
+        from .lights import LightSet
+        return LightSet({
             id: Light(self.api, id)
             for id in self.light_ids
-        }
+        })
 
     def apply(self):
         self.api.put(self.group.action_url, {'scene': self.id})
 
     def delete(self):
         self.api.delete(self.url)
+
+
+class SceneSet(dict):
+    def __init__(self, *args, **kwargs):
+        self.update(*args, **kwargs)
+
+    # def __repr__(self):
+    #     data = dict(self)
+    #     return '<SceneSet\n%r\n>' % (data)
+
+    def filter(self, **filters):
+        output = dict(self)
+        for f, v in filters.items():
+            if f in SCENE_FILTERS:
+                output = dict(filter(
+                    SCENE_FILTERS[f](v),
+                    output.items(),
+                ))
+
+        return SceneSet(output)
