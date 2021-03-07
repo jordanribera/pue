@@ -3,6 +3,17 @@ GROUP_TYPES = (
     'Room',
 )
 
+LIGHT_TYPES = (
+    'Dimmable light',
+    'Color temperature light',
+    'Extended color light',
+)
+
+SCENE_TYPES = (
+    'GroupScene',
+    'LightScene',
+)
+
 ROOM_CLASSES = (
     'Living room',
     'Kitchen',

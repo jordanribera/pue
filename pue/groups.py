@@ -1,4 +1,6 @@
+from .filters import ResultSet
 from .lights import Light
+
 from .constants import ROOM_CLASSES
 from .filters import GROUP_FILTERS
 
@@ -60,21 +62,6 @@ class Group:
         self.api.delete(self.url)
 
 
-class GroupSet(dict):
-    def __init__(self, *args, **kwargs):
-        self.update(*args, **kwargs)
-
-    # def __repr__(self):
-    #     data = dict(self)
-    #     return '<GroupSet\n%r\n>' % (data)
-
-    def filter(self, **filters):
-        output = dict(self)
-        for f, v in filters.items():
-            if f in GROUP_FILTERS:
-                output = dict(filter(
-                    GROUP_FILTERS[f](v),
-                    output.items(),
-                ))
-
-        return GroupSet(output)
+class GroupSet(ResultSet):
+    set_type = 'groups'
+    set_filters = GROUP_FILTERS

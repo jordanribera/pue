@@ -1,3 +1,4 @@
+from .filters import ResultSet
 from .groups import Group
 from .lights import Light
 
@@ -57,21 +58,6 @@ class Scene:
         self.api.delete(self.url)
 
 
-class SceneSet(dict):
-    def __init__(self, *args, **kwargs):
-        self.update(*args, **kwargs)
-
-    # def __repr__(self):
-    #     data = dict(self)
-    #     return '<SceneSet\n%r\n>' % (data)
-
-    def filter(self, **filters):
-        output = dict(self)
-        for f, v in filters.items():
-            if f in SCENE_FILTERS:
-                output = dict(filter(
-                    SCENE_FILTERS[f](v),
-                    output.items(),
-                ))
-
-        return SceneSet(output)
+class SceneSet(ResultSet):
+    set_type = 'scenes'
+    set_filters = SCENE_FILTERS

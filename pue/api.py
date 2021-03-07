@@ -51,7 +51,7 @@ class HueAPI:
     # Lights
     @property
     def lights(self):
-        return LightSet(self.get_lights(refresh=False))
+        return LightSet(self.get_lights())
 
     def get_lights(self, refresh=True):
         if self._lights and not refresh:
@@ -69,7 +69,7 @@ class HueAPI:
     # Groups
     @property
     def groups(self):
-        return GroupSet(self.get_groups(refresh=False))
+        return GroupSet(self.get_groups())
 
     def get_groups(self, refresh=True):
         if self._groups and not refresh:
@@ -104,7 +104,7 @@ class HueAPI:
     # Scenes
     @property
     def scenes(self):
-        return SceneSet(self.get_scenes(refresh=False))
+        return SceneSet(self.get_scenes())
 
     def get_scenes(self, refresh=True):
         if self._scenes and not refresh:
